@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#backup docker-compose gitlab backup file to remote storage
+#user setting
 sourcepath="/.../container folder/_data/backups/"
 backuppath="/backup/sub folder/"
 
