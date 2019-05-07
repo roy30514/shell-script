@@ -18,6 +18,7 @@ backups ()
 {
 
 echo "backup....."
+#move today file to storage
 find $sourcepath -type f  -mtime 0  | xargs -i cp -f {}   $backuppath  
 }
 
@@ -29,5 +30,6 @@ if [ -f "/backup/connettest.txt" ];then
    deletefile
 else
    echo "file no exists"
+#mount remote folder  
    mount -t cifs -o username="username",password="userpw" //remote_nas/git-backup /backup  
 fi
