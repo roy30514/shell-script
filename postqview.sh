@@ -2,8 +2,8 @@
 #
 # make : ivan
 # output mailq message and format it.
+# get postqueue  mail subject and send mail to user
 #
-#get postqueue  mail subject and send mail to user
 
 today=$(date +%y%m%d%H%M)
 filemae=/root/$today-mailq.log
