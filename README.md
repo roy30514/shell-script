@@ -1,3 +1,3 @@
-# CMone
+# linux shell script
 
 test
