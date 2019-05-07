@@ -3,7 +3,7 @@
 #backup docker-compose gitlab backup file to remote storage
 #user setting
 sourcepath="/.../container folder/_data/backups/"
-backuppath="/backup/sub folder/"
+backuppath="/backup/sub folder../"
 
 
 #delete  more 1 day file
@@ -31,5 +31,5 @@ if [ -f "/backup/connettest.txt" ];then
 else
    echo "file no exists"
 #mount remote folder  
-   mount -t cifs -o username="username",password="userpw" //remote_nas/git-backup /backup  
+   mount -t cifs -o username="username",password="userpw" //remote_nas.../git-backup /backup  
 fi
