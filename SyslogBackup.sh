@@ -14,11 +14,11 @@
 #
 #1.make a logrotate cron in /etc/crontab
 #code
-# root /usr/sbin/logrotate -f /root/rotate.d/192.168.1*
-# root /usr/sbin/logrotate -f /root/rotate.d/192.168.2*
+# root /usr/sbin/logrotate -f template_conf
+# 
 #
 #logrotate conf template
-#/var/log/HOSTS/192.168.150.1/* {
+#/var/log/HOSTS/subdoldername/* {
 #  daily    # cycle time
 #  missingok  # if don't has file not do .
 #  rotate 3   # how mach file
@@ -34,22 +34,20 @@
 
 #####################################
 # command EX:
-# $1 is under /var/log/HOSTS sub folder name.
+# $1 is  /var/log/HOSTS subfolder name.
 #
-#sh /root/testbackup.sh 192.168.10.10
+#sh /root/SyslogBackup.sh subdoldername 
 ####################################
 
 #!/bin/bash
 
-SyslogPath=/var/log/HOSTS
-BachupPath=/backup/HOSTS
-#Today=$(date +%m%d)
-#only save three day syslog
-#Delday=$(date +%m%d -d '3 day ago')
-Backupfolder=$BachupPath/$1
-Syslogfolder=$SyslogPath/$1
-Backupfoldercheck=$BachupPath/check.txt
 
+SyslogPath=/var/log/HOSTS    #src log folder
+BachupPath=/backup/HOSTS     #backup log folder
+Backupfolder=$BachupPath/$1   
+Syslogfolder=$SyslogPath/$1  
+Backupfoldercheck=$BachupPath/check.txt
+usermail=mail@aaa.bbbb       #if backup subfolder not exist send mail
 
 
 
@@ -118,12 +116,9 @@ fi
 
 
 
-#send Alert to line and mail
+#send Alert to  mail
 function sendAlert(){
-#echo $1 | mail -s "ZabbixServer Backup syslog failure" mis@cmoney.net.tw 
-
-/usr/lib/zabbix/alertscripts/linenotify.sh d9nJoqHUiNfbfngxUXLsry98ub3gULkDdAES3lX3wAi SyslogBackupError "$1"
-
+echo $1 | mail -s "ZabbixServer Backup syslog failure" usermail
 
 
 }
